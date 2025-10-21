@@ -21,3 +21,32 @@ def criar_produto():
             conexao.close()
             
 criar_produto()
+
+def inserir_produto(nome, categoria, preco, quantidade):
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute(
+                "INSERT INTO produto (nome, categoria, preco, quantidade) VALUES (%s, %s, %s, %s)",
+                (nome, categoria, preco, quantidade)
+            )
+            conexao.commit()
+        except Exception as erro:
+            print(f"Erro ao inserir produto {erro}")
+        finally:
+            cursor.close()
+            conexao.close()
+inserir_produto("BB", "ab", 2020, 9.0)   
+def listar_filme():
+    conexao, cursor = conectar()
+    if conexao:
+        try:
+            cursor.execute(
+                "SELECT * FROM produto ORDER BY id"
+            )
+            return cursor.fetchall()
+        except Exception as erro:
+            print(f"Erro ao inserir produto {erro}")
+        finally:
+            cursor.close()
+            conexao.close()
