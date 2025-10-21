@@ -1,13 +1,6 @@
-if menu == "Adicionar prduto":
-    st.subheader("🗓Adicionar produto")
-    titulo = st.text_input ("Titulo do produto")
-    genero = st.text-input("Genero")
-    ano = st.number_input("Ano de Lançamento", min_value=1880, max_value=2100, step=0.1)
-    avaliacao = st.number_input("Avaliação de (0 a 10)", min_value=0.0, max_value1=0.0, step=0.1)
-    if st.button("Salvar Filme"):
-        dados = {titulo: titulo, "genero": genero, "ano": ano, "avaliacao": avaliacao}
-        response = requests.post(F"{API_URL}/filmes", params=dados)
-        if response.status_code == 200:
-            st.sucess("Filme adicionando com sucesso!")
-        else:
-            st.error("Erro ao adicionar o filme")
+API_URL = "http://127.0.0.1:8000"
+st.set_page_config(page_title="Gerenciador de produtos", page_icon="📦🧾")
+st.title("📦 Estoque de produtos ")
+
+menu = st.sidebar.radio("Navegação", ["Estoque", "Registrar produto", "Atualizar produto", "Deletar produto"])
+

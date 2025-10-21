@@ -7,10 +7,10 @@ def criar_produto():
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS produto (
                 id SERIAL PRIMARY KEY,
-                titulo TEXT NOT NULL,
-                genero TEXT NOT NULL,
-                ano INTEGER NOT NULL,
-                avaliacao REAL          
+                nome varchar(100) NOT NULL,
+                categoria varchar(100) NOT NULL,
+                preco INTEGER NOT NULL,
+                quantidade REAL          
                 )           
             """)
             conexao.commit()
@@ -31,12 +31,13 @@ def inserir_produto(nome, categoria, preco, quantidade):
                 (nome, categoria, preco, quantidade)
             )
             conexao.commit()
+            print("Deu certo")
         except Exception as erro:
             print(f"Erro ao inserir produto {erro}")
         finally:
             cursor.close()
             conexao.close()
-inserir_produto("BB", "ab", 2020, 9.0)   
+
 def listar_filme():
     conexao, cursor = conectar()
     if conexao:
